@@ -7,3 +7,6 @@ body {
 .nav-wrapper {
     width: auto
 }
+table.highlight tbody tr:last-of-type {
+    border-bottom: none
+}
