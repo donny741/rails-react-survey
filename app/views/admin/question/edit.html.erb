@@ -1,0 +1,7 @@
+    <% add_breadcrumbs @surveyName, admin_survey_path(@question.survey_id) %>
+    <% add_breadcrumbs @question.question %>
+<%= render_breadcrumbs %>
+
+<div class="container">
+    <%= render partial: 'form', locals: {title: "Redaguoti apklausą", method: :patch, path: admin_question_url(@question.id)} %>
+</div>

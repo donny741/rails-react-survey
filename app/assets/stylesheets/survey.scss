@@ -1,0 +1,223 @@
+// Place all the styles related to the feedback controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+body {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(240,240,240);
+    font-family: Roboto;
+}
+.error-page a {
+  color: black;
+  text-decoration: none
+}
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 100%;
+    bottom:0;
+    top: 0;
+    left:0;
+    right:0;
+    margin-left:15px;
+    margin-right: 15px;
+}
+.feedback {
+    padding: 10px;
+    background-color: white;
+    min-height: 330px;
+    width: 450px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between
+}
+.navigation {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    margin: 0 10px;
+    border-top: 1px solid rgb(245,245,245);
+}
+.next-button {
+    padding: 2px 5px;
+    cursor: pointer;
+}
+.feedback-header {
+    padding: 50px 10px;
+    
+    text-align: center;
+    
+    transform: translateY(-30px);
+}
+.feedback-header h1 {
+    font-size: 16pt;
+    margin-top:10px;
+    margin-bottom:10px;
+    font-weight: 400
+}
+.feedback-header h2 {
+    font-size: 11pt;
+    margin-top:10px;
+    color: rgb(153,153,153);
+    font-weight: 400
+}
+
+.logo {
+    align-self: stretch;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(245,245,245);
+    padding: 20px 20px;
+    padding-top: 10px;
+    color: rgb(153,153,153);
+    font-size: 15pt;
+    vertical-align: middle;
+    font-weight: 300;
+}
+.logo span {
+    margin-top: 4px;
+}
+.logo img {
+    height: 25px;
+    width: 30px;
+    justify-content: flex-start;
+
+}
+.comment {
+    padding: 0px 30px;
+    padding-top: 20px;
+}
+.rating {
+    width: 208px;
+    height: 40px;
+    margin: 0 auto;
+    padding: 0px 50px;
+    padding-top: 20px;
+}
+.rating label {
+    float: right;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+.rating label:not(:first-of-type) {
+    padding-right: 2px;
+}
+.rating label:before {
+content: "\2605";
+    font-size: 42px;
+    color: #cccccc;
+    line-height: 1;
+}
+.rating input {
+    display: none;
+}
+.rating input:checked ~ label:before, .rating:not(:checked) > label:hover:before, .rating:not(:checked) > label:hover ~ label:before {
+    color: #f9df4a;
+}
+
+#comment {
+    border: none;
+    background: rgb(240,240,240);
+    color: rgb(140,140,140);
+    padding: 10px;
+    margin-bottom: -50px;
+    width: 100%;
+    height: 150px;
+    margin-left: -10px
+    
+}
+.circle-loader {
+    margin-bottom: 3.5em;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-left-color: #5cb85c;
+    animation: loader-spin 1.2s infinite linear;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 50%;
+    width: 7em;
+    height: 7em;
+    left: calc(50% - 53px);
+    top: 60px;
+    transition: all 0.3s;
+  }
+  
+  .load-complete {
+    -webkit-animation: none;
+    animation: none;
+    border-color: #5cb85c;
+    transition: border 500ms ease-out;
+  }
+  
+  .checkmark {
+    display: none;
+  }
+  .checkmark.draw:after {
+    animation-duration: 800ms;
+    animation-timing-function: ease;
+    animation-name: checkmark;
+    transform: scaleX(-1) rotate(135deg);
+  }
+  .checkmark:after {
+    opacity: 1;
+    height: 3.5em;
+    width: 1.75em;
+    transform-origin: left top;
+    border-right: 3px solid #5cb85c;
+    border-top: 3px solid #5cb85c;
+    content: '';
+    left: 1.75em;
+    top: 3.5em;
+    position: absolute;
+  }
+  
+  @keyframes loader-spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes checkmark {
+    0% {
+      height: 0;
+      width: 0;
+      opacity: 1;
+    }
+    20% {
+      height: 0;
+      width: 1.75em;
+      opacity: 1;
+    }
+    40% {
+      height: 3.5em;
+      width: 1.75em;
+      opacity: 1;
+    }
+    100% {
+      height: 3.5em;
+      width: 1.75em;
+      opacity: 1;
+    }
+  }
+  
+  .success-wrapper {
+      display: flex;
+      justify-content: space-around;
+      flex-flow: column;
+      text-align: center;
+      transform: translateY(-20px)
+  }
+  .success-wrapper h2 {
+      color: #228B22;
+      transform: translateY(-20px);
+      opacity: 0;
+      transition: opacity 0.5s;
+  }

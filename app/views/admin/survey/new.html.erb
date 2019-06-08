@@ -1,0 +1,30 @@
+<% add_breadcrumbs "Nauja apklausa" %>
+<%= render_breadcrumbs %>
+
+<div class="container">
+  <div class="row">
+    <div class="card-panel grey lighten-5">
+      <%= form_for @survey, url: '/admin/survey', method: :post do |f| %>
+          <div class="row">
+            <%= f.text_field :name, class: 'form-control title', required: :required, placeholder: "Apklausos pavadinimas" %>
+            <div data-hook="type" class="form-group">
+              <strong>Aktyvi</strong>
+              <div class="radio my-2">
+                <%= label_tag :score_based do %>
+                  <%= f.radio_button('active', 'Yes', { id: 'score_based' }) %>
+                  <span>Taip</span>
+                <% end %>
+              </div>
+              <div class="radio my-2">
+                <%= label_tag :comment_based do %>
+                  <%= f.radio_button('active', 'No', { id: 'comment_based' }) %>
+                  <span>Ne</span>
+                <% end %>
+              </div>
+            </div>
+            <%= button_to "Sukurti", 'submit', {class: 'waves-effect waves-light btn', data: { disable_with: "Išsaugoma..." }} %>
+          </div>
+      <% end %>
+    </div><!-- Card -->
+  </div><!--Row -->
+</div>

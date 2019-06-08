@@ -1,0 +1,37 @@
+<%= render_breadcrumbs %>
+
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <h3>Apklausų sąrašas</h3>
+      <div class="card grey lighten-5">
+        <div class="card-content">
+          <table class="highlight centered">
+            <thead>
+              <tr data-hook="reports_header">
+                <th>Pavadinimas</th>
+                <th>Statusas</th>
+                <th>Atsakymai</th>
+                <th>Veiksmai</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @survey.each do |a| %>
+              <tr data-hook="reports_row">
+                <td><%= link_to a.name, admin_survey_path(a.id) %></td>
+                <td><%= a.active ? "<span style='color:green'>Aktyvi</span>".html_safe : "Neaktyvi" %></td>
+                <td><%= a.survey_responses.count.to_s%></td>
+                <td><%= link_to 'Ištrinti', admin_survey_path(a.id), method: :delete %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          </div><!-- Card content -->
+        <div class="card-action">
+          <%= link_to 'Sukurti naują', new_admin_survey_path, { class: "black-text"} %>
+        </div>
+      </div><!-- Card -->
+      </div><!-- Column -->
+    </div><!-- Row -->
+</div>
+

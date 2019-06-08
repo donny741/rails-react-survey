@@ -1,0 +1,97 @@
+<% add_breadcrumbs @survey.name %>
+<%= render_breadcrumbs %>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col s6">
+            <div class="row">
+                <h3> Klausimai </h3>    
+                <div class="card-panel grey lighten-5">
+                    <table class="table">
+                        <thead>
+                        <tr data-hook="reports_header">
+                            <th>Eilės numeris</th>
+                            <th>Klausimas</th>
+                            <th>Tipas</th>
+                            <th>Veiksmai</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% @questions.each do |a| %>
+                        <tr data-hook="reports_row">
+                            <td>
+                            <%= link_to('<i class="material-icons">arrow_downward</i>'.html_safe, "/admin/question/#{params[:id]}/shift/#{a.id}/up") unless a.position == @questions.last.position %>
+                            <%= link_to('<i class="material-icons">arrow_upward</i>'.html_safe, "/admin/question/#{params[:id]}/shift/#{a.id}/down") unless a.position == 0%>
+                            </td>
+                            <td><%= a.question %></td>
+                            <td><%= a.comment_needed ? "Komentaras" : "Įvertinimas"  %></td>
+                            <td>
+                                <%= link_to 'Ištrinti', admin_question_url(a.id), method: 'delete' %>
+                                <%= link_to 'Redaguoti', edit_admin_question_url(a.id) %> 
+                            </td>
+                        </tr>
+                        <% end %>
+                        </tbody>
+                    </table>
+                    <%= link_to 'Prideti klausima', new_admin_question_path(survey_id: params[:id]), { class: "btn wave-effect", style:"margin-top:15px", icon: 'add', id: 'admin_new_product' } %>
+                </div><!-- Card Panel -->
+            </div><!-- Row -->
+        </div><!-- column -->
+        <div class="col s6">
+            <div class="row">
+                <h3>Sukurti apklausą</h3>
+                <div class="container">
+                    <div class="card grey lighten-5">
+                        <%= form_tag "/admin/survey/create-response/#{params[:id]}", method: 'put' do %>
+                            <div class="card-content">
+                                <%= text_field_tag :email, nil, placeholder: "El. pašto adresas" %>
+                            </div><!-- Card Content -->
+                            <div class="card-action">
+                                <%= submit_tag "Sukurti", class:'btn wave-light' %>
+                                <%= submit_tag "Sukurti ir išsiųsti", class:'btn wave-light' %>
+                            </div><!-- Card Actions -->
+                        <% end %>
+                    </div><!-- Card -->
+                </div><!-- Container -->
+            </div> <!-- Row -->
+        </div><!-- Column -->
+    </div><!-- Row -->
+
+    <div class="row">
+        <h1>Atsakymai</h1>
+        <div class="col s12">
+            <div class="card-panel grey lighten-5">
+                <table class="table">
+                    <thead>
+                    <tr data-hook="reports_header">
+                        <th>Statusas</th>
+                        <th>Vartotojas</th>
+                        <th>Pradinis įvertinimas</th>
+                        <th>Nuoroda</th>
+                        <th>Baigta</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @responses.each do |a| %>
+                    <tr data-hook="reports_row">
+                        <td><%= 
+                        case a.status
+                            when 0 then "Neatidaryta"
+                            when 1 then "Atidaryta"
+                            when 2 then link_to "Užbaigta", admin_survey_answer_path(a.id)
+                        end
+                        %></td>
+                        <td><%= a.email %></td>
+                        <td><%= a.initial_score %></td>
+                        <td><%= link_to a.key, "/survey/#{a.key}" %></td>
+                        <td><%= a.status == 2 ? a.updated_at : '-' %></td>
+                    </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+            </div> <!-- Card -->
+        </div><!-- Column -->
+    </div><!-- Row -->
+
+</div><!-- container (wrapper) -->

@@ -1,0 +1,7 @@
+ <nav>
+    <div class="nav-wrapper grey darken-2">
+        <% nav.each do |n| %>
+            <%= link_to n[:title], n[:path], class:'breadcrumb' %>
+        <% end %>
+    </div>
+</nav>

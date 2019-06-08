@@ -1,0 +1,28 @@
+    <% add_breadcrumbs @surveyName, admin_survey_path(@response.survey_id) %>
+    <% add_breadcrumbs @response.key %>
+<%= render_breadcrumbs %>
+
+
+<div class="container">
+    <div class="row">
+        <div class="card-panel grey lighten-5">
+            <h1> Atsakymai </h1>    
+            <table class="table">
+            <thead>
+                <tr data-hook="reports_header">
+                <th>Klausimas</th>
+                <th>Atsakymas</th>
+                </tr>
+            </thead>
+            <tbody>
+            <% @answers.each do |r| %>
+                <tr>
+                    <td><%= r.question %></td>
+                    <td><%= r.score.nil? ? r.comment.nil? ? "-" : r.comment : r.score %></td>
+                </tr>
+            <% end %>
+            </tbody>
+            </table>
+        </div><!-- Card Panel-->
+    </div><!-- Row -->
+</div><!-- Container -->

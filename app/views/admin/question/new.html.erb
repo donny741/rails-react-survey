@@ -1,0 +1,7 @@
+    <% add_breadcrumbs @surveyName, admin_survey_path(params[:survey_id]) %>
+    <% add_breadcrumbs "Nauja apklausa" %>
+<%= render_breadcrumbs %>
+
+<div class="container">
+    <%= render partial: 'form', locals: {title: "Nauja apklausa", method: :post, path: admin_question_index_path(survey_id: params[:survey_id])} %>
+</div> <!-- Container (wrapper) -->

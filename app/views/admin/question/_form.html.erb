@@ -1,0 +1,20 @@
+<%= form_for @question, url: path, method: method do |f| %>
+    <div class="card-panel grey lighten-5">
+        <h5><%= title %></h5>
+        <%= f.text_field :question, class: 'form-control title', required: :required, placeholder: "Apklausos pavadinimas" %>
+        <strong>Tipas</strong>
+        <div class="radio">
+            <%= label_tag :score_based do %>
+            <%= f.radio_button('comment_needed', 0, {checked: true, id: 'score_based' }) %>
+            <span>Ivertinimas</span>
+            <% end %>
+        </div>
+        <div class="radio">
+            <%= label_tag :comment_based do %>
+            <%= f.radio_button('comment_needed', 1, { id: 'comment_based' }) %>
+            <span>Komentaras</span>
+            <% end %>
+        </div>
+        <%= button_to "Sukurti", 'submit', {class: 'btn', data: { disable_with: "Išsaugoma..." }} %>
+    </div><!-- Card Panel -->
+<% end %>
