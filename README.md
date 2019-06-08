@@ -1,6 +1,6 @@
 # README
 
-A simple survey built with rails and react.
+A simple survey application built with rails and react.
 
 Features
 * Frontend
