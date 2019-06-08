@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 2019_06_08_121907) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "survey_questions", force: :cascade do |t|
     t.string "question"
     t.boolean "comment_needed"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "survey_id"
+    t.bigint "survey_id"
     t.index ["survey_id"], name: "index_survey_questions_on_survey_id"
   end
 
@@ -29,7 +32,7 @@ ActiveRecord::Schema.define(version: 2019_06_08_121907) do
     t.string "key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "survey_response_id"
+    t.bigint "survey_response_id"
     t.index ["survey_response_id"], name: "index_survey_response_answers_on_survey_response_id"
   end
 
@@ -40,7 +43,7 @@ ActiveRecord::Schema.define(version: 2019_06_08_121907) do
     t.string "key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "survey_id"
+    t.bigint "survey_id"
     t.index ["survey_id"], name: "index_survey_responses_on_survey_id"
   end
 

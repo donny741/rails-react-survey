@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  root to: 'admin/survey#index'
+
   #Frontend routes
   get '/survey/:id/:score', to:'survey#new'
   get '/survey/:id', to:'survey#new'
